@@ -11,10 +11,15 @@ fps = 60
 
 """ define static parameters (don't change with time) """
 CAR_MASS = 100 # units
-CAR_SIZE = (200, 50) # pixels
+CAR_SIZE = (100, 30) # pixels
+WHEEL_RADIUS = 15
+WHEEL_OFFSET_X = 50
+GROUND_CLEARANCE = 15
 GRAVITY = 0.6 # veritcal acceleration due to gravity
 ROAD_LEVEL = 500 # y = 100
 F_WEIGHT = CAR_MASS * GRAVITY # weight acts veritically down
+
+
 
 """ define physical constants for drag """
 # fluid_density, speed, drag_coeff, cross_area, angle_radian
@@ -64,7 +69,10 @@ def renderGraphics(x, y):
     screen.fill('black')
     pg.draw.line(screen, 'red', [0, ROAD_LEVEL], [SIZE[0], ROAD_LEVEL], 1)
     
+    # car
     pg.draw.rect(screen, "green", [x, y, CAR_SIZE[0], CAR_SIZE[1]])
+    # wheels
+    pg.draw.circle(screen, "yellow", (x + ))
     
     pg.display.update()
 
