@@ -8,24 +8,25 @@ screen = pg.display.set_mode(SIZE)
 clock = pg.time.Clock()
 fps = 60
 
+""" define physical constants """
+# fluid_density, speed, drag_coeff, cross_area, angle_radian
+GRAVITY = 0.6 # veritcal acceleration due to gravity
+
 
 """ define static parameters (don't change with time) """
-CAR_MASS = 100 # units
-CAR_SIZE = (100, 30) # pixels
-WHEEL_RADIUS = 15
-WHEEL_OFFSET_X = 50
+CHASSIS_MASS = 100 # units
+CHASSIS_SIZE = (20, 6) # pixels
+WHEEL_MASS = 10
+WHEEL_RADIUS = 3
+DIM_A = 
 GROUND_CLEARANCE = 15
-GRAVITY = 0.6 # veritcal acceleration due to gravity
+
 ROAD_LEVEL = 500 # y = 100
 F_WEIGHT = CAR_MASS * GRAVITY # weight acts veritically down
 
 
 
-""" define physical constants for drag """
-# fluid_density, speed, drag_coeff, cross_area, angle_radian
-DENSITY = 0.005
-DRAG_COEFF = 0.1
-AREA = 50
+
 
 """ define dynamic parameters (change with time) """
 pos_x, pos_y = 0, 0
