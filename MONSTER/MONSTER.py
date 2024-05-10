@@ -28,12 +28,18 @@ WEIGHT = CHASSIS_MASS * GRAVITY # weight acts veritically down
 
 
 """ define dynamic parameters (change with time) """
-phi_deg = - math.atan2(DIM_B, DIM_A) # tilt angle in degrees
-phi_rad = math.radians(phi_deg) # tilt angle in radians
-left_wheel_pos = [50, (ROAD_LEVEL - WHEEL_RADIUS) - 2 ] # initiate left wheel position
+# tilt angle in degrees
+phi_deg = - math.atan2(DIM_B, DIM_A)
+# tilt angle in radians
+phi_rad = math.radians(phi_deg)
+# initiate left wheel position
+left_wheel_pos = [50, (ROAD_LEVEL - WHEEL_RADIUS) - 2 ]
+# right wheel always on the same line that is parallel to the length of the chassis
 right_wheel_pos = [left_wheel_pos + math.cos(phi_rad), left_wheel_pos[1] - math.sin(phi_rad)]
-cg = [left_wheel_pos[0] + DIM_A, left_wheel_pos[1] - DIM_B] # centre of gravity of the car relative to the center of left wheel
-chassis_center = cg # just an approximation, only affects graphics not physics
+# centre of gravity of the car relative to the center of left wheel
+cg = [left_wheel_pos[0] + DIM_A, left_wheel_pos[1] - DIM_B]
+# just an approximation, only affects graphics not physics
+chassis_center = cg
 
 
 """ set up initial conditions """
