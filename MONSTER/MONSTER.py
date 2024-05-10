@@ -10,32 +10,34 @@ fps = 60
 
 """ define physical constants """
 # fluid_density, speed, drag_coeff, cross_area, angle_radian
-GRAVITY = 0.6 # veritcal acceleration due to gravity
-
+GRAVITY = 0.5 # veritcal acceleration due to gravity
+ROAD_LEVEL = 500 # y = 100
 
 """ define static parameters (don't change with time) """
 CHASSIS_MASS = 100 # units
 CHASSIS_SIZE = (20, 6) # pixels
-WHEEL_MASS = 10
 WHEEL_RADIUS = 3
-DIM_A = 
-GROUND_CLEARANCE = 15
+DIM_A = 7
+DIM_B = 3
+WHEELBASE = 14
 
-ROAD_LEVEL = 500 # y = 100
-F_WEIGHT = CAR_MASS * GRAVITY # weight acts veritically down
+WEIGHT = CHASSIS_MASS * GRAVITY # weight acts veritically down
 
 
 
 
 
 """ define dynamic parameters (change with time) """
-pos_x, pos_y = 0, 0
-vel_x, vel_y = 0, 0
-acc_x, acc_y = 0, 0
+phi_deg = - math.atan2(DIM_B, DIM_A) # tilt angle in degrees
+phi_rad = math.radians(phi_deg) # tilt angle in radians
+left_wheel_pos = [50, (ROAD_LEVEL - WHEEL_RADIUS) - 2 ] # initiate left wheel position
+right_wheel_pos = [left_wheel_pos + math.cos(phi_rad), left_wheel_pos[1] - math.sin(phi_rad)]
+cg = [left_wheel_pos[0] + DIM_A, left_wheel_pos[1] - DIM_B] # centre of gravity of the car relative to the center of left wheel
+chassis_center = cg # just an approximation, only affects graphics not physics
+
 
 """ set up initial conditions """
-pos_x = SIZE[0]//2 - 350
-pos_y = ROAD_LEVEL - CAR_SIZE[1]
+
 
 """ simulation settings """
 
@@ -57,30 +59,37 @@ def initiate_Car():
 def drive_Car():
     pass
 
-""" Physics Engine """
+""" Physics & math """
 def updateForces():
+    T_drive = 0
+    F_drive = T_drive / WHEEL_RADIUS
     pass
 
-def integrator():
-    pass
+
+
 
 
 """ Render """
-def renderGraphics(x, y):
-    screen.fill('black')
-    pg.draw.line(screen, 'red', [0, ROAD_LEVEL], [SIZE[0], ROAD_LEVEL], 1)
+def drawFrame(x, y):
+    # draw background
     
-    # car
-    pg.draw.rect(screen, "green", [x, y, CAR_SIZE[0], CAR_SIZE[1]])
-    # wheels
-    pg.draw.circle(screen, "yellow", (x + ))
+    # draw terrain
+
+    # draw car (chassis & wheels)
+    
     
     pg.display.update()
 
 while True:
     
-    getInputs()
-    renderGraphics()
+    """ user inputs """
+
+    """ update forces """
+
+    """ compute movements """
+
+    """ render graphics """
+    drawFrame()
     
     clock.tick(fps)
     pg.display.set_caption("fps: " + str(clock.get_fps()))
